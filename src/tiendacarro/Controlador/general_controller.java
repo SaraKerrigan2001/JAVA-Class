@@ -36,7 +36,7 @@ public class general_controller {
         String cedula = vistaChofer.tomar_cedula();
 
         chofer_modelo obj_chofer = new chofer_modelo(nombre, licencia, cedula);
-        String errorChofer = Validaciones_modelo.validarChoferMensaje(obj_chofer);
+        String errorChofer = obj_chofer.validarMensaje();
 
         if (errorChofer == null) {
             System.out.println("Chofer válido.");
@@ -51,7 +51,7 @@ public class general_controller {
         String puestos = vistaCarro.tomar_num_puestos();
 
         carro_modelo obj_carro = new carro_modelo(marca, color, puestos);
-        String errorCarro = Validaciones_modelo.validarCarroMensaje(obj_carro);
+        String errorCarro = obj_carro.validarMensaje();
 
         if (errorCarro == null) {
             System.out.println("Carro válido.");
@@ -74,7 +74,7 @@ public class general_controller {
         }
 
         motor_modelo obj_motor = new motor_modelo(cilindraje, tipoMotor, marcaMotor);
-        String errorMotor = Validaciones_modelo.validarMotorMensaje(obj_motor);
+        String errorMotor = obj_motor.validarMensaje();
 
         if (errorMotor == null) {
             System.out.println("Motor válido.");
@@ -88,7 +88,7 @@ public class general_controller {
         String cedula = vistaPasajero.tomar_cedula();
 
         Pasajero_modelo obj_pasajero = new Pasajero_modelo(nombre, cedula);
-        String errorPasajero = Validaciones_modelo.validarPasajeroMensaje(obj_pasajero);
+        String errorPasajero = obj_pasajero.validarMensaje();
 
         if (errorPasajero == null) {
             System.out.println("Pasajero válido.");

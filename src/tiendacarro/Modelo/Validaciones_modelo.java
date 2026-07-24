@@ -38,80 +38,47 @@ public class Validaciones_modelo {
     }
 
     public static boolean validarChofer(chofer_modelo chofer) {
-        return validarChoferMensaje(chofer) == null;
+        return chofer != null && chofer.validar();
     }
 
     public static String validarChoferMensaje(chofer_modelo chofer) {
         if (chofer == null) {
             return "El chofer no puede ser nulo.";
         }
-        if (!esSoloLetras(chofer.getNombre_chofer())) {
-            return "Nombre inválido: solo se permiten letras.";
-        }
-        if (!esCedulaValida(chofer.getCedula_chofer())) {
-            return "Cédula inválida: debe tener entre 6 y 10 dígitos.";
-        }
-        if (!esLicenciaValida(chofer.getLincencia_chofer())) {
-            return "Licencia inválida: debe tener entre 6 y 10 dígitos.";
-        }
-        return null;
+        return chofer.validarMensaje();
     }
 
     public static boolean validarCarro(carro_modelo carro) {
-        return validarCarroMensaje(carro) == null;
+        return carro != null && carro.validar();
     }
 
     public static String validarCarroMensaje(carro_modelo carro) {
         if (carro == null) {
             return "El carro no puede ser nulo.";
         }
-        if (!esSoloLetras(carro.getMarca())) {
-            return "Marca inválida: solo se permiten letras.";
-        }
-        if (!esTexto(carro.getColor())) {
-            return "Color inválido: no puede estar vacío.";
-        }
-        if (!esSoloNumeros(carro.getPuestos())) {
-            return "Puestos inválidos: solo se permiten números.";
-        }
-        return null;
+        return carro.validarMensaje();
     }
 
     public static boolean validarMotor(motor_modelo motor) {
-        return validarMotorMensaje(motor) == null;
+        return motor != null && motor.validar();
     }
 
     public static String validarMotorMensaje(motor_modelo motor) {
         if (motor == null) {
             return "El motor no puede ser nulo.";
         }
-        if (motor.getCilindraje() <= 0) {
-            return "Cilindraje inválido: debe ser un número mayor que cero.";
-        }
-        if (!esTexto(motor.getTipo_motor())) {
-            return "Tipo de motor inválido: no puede estar vacío.";
-        }
-        if (!esTexto(motor.getMarca_motor())) {
-            return "Marca de motor inválida: no puede estar vacía.";
-        }
-        return null;
+        return motor.validarMensaje();
     }
 
     public static boolean validarPasajero(Pasajero_modelo pasajero) {
-        return validarPasajeroMensaje(pasajero) == null;
+        return pasajero != null && pasajero.validar();
     }
 
     public static String validarPasajeroMensaje(Pasajero_modelo pasajero) {
         if (pasajero == null) {
             return "El pasajero no puede ser nulo.";
         }
-        if (!esSoloLetras(pasajero.getNombre())) {
-            return "Nombre de pasajero inválido: solo se permiten letras.";
-        }
-        if (!esCedulaValida(pasajero.getCedula())) {
-            return "Cédula de pasajero inválida: debe tener entre 6 y 10 dígitos.";
-        }
-        return null;
+        return pasajero.validarMensaje();
     }
 
     public static boolean validarApi(Api_modelo api) {
