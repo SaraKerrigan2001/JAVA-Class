@@ -1,6 +1,7 @@
 package tiendacarro.Vista;
 
 import java.util.Scanner;
+import tiendacarro.Modelo.Validaciones_modelo;
 
 public class Vista_pasajero {
     private final Scanner teclado = new Scanner(System.in);
@@ -11,8 +12,7 @@ public class Vista_pasajero {
     }
 
     public String tomar_cedula() {
-        System.out.print("Ingresa la cedula del pasajero: ");
-        return teclado.nextLine().trim();
+        return Validaciones_modelo.leerCedula(teclado, "Ingresa la cedula del pasajero: ");
     }
 
     public void registrar_pasajero() {

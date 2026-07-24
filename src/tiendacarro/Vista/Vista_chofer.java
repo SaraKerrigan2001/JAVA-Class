@@ -1,6 +1,7 @@
 package tiendacarro.Vista;
 
 import java.util.Scanner;
+import tiendacarro.Modelo.Validaciones_modelo;
 
 public class Vista_chofer {
     private final Scanner teclado = new Scanner(System.in);
@@ -11,13 +12,11 @@ public class Vista_chofer {
     }
 
     public String tomar_lincencia() {
-        System.out.print("Ingrese la lincencia del chofer: ");
-        return teclado.nextLine().trim();
+        return Validaciones_modelo.leerLicencia(teclado, "Ingrese la licencia del chofer: ");
     }
 
     public String tomar_cedula() {
-        System.out.print("Ingrese la cedula del chofer: ");
-        return teclado.nextLine().trim();
+        return Validaciones_modelo.leerCedula(teclado, "Ingrese la cedula del chofer: ");
     }
 
     public void registrar_chofer() {
