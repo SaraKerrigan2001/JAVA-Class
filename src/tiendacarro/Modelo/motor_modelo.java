@@ -40,8 +40,25 @@ public class motor_modelo {
         this.marca_motor = marca_motor;
     }
 
+    public boolean validar() {
+        return validarMensaje() == null;
+    }
+
+    public String validarMensaje() {
+        if (cilindraje <= 0) {
+            return "Cilindraje inválido: debe ser un número mayor que cero.";
+        }
+        if (!Validaciones_modelo.esTexto(tipo_motor)) {
+            return "Tipo de motor inválido: no puede estar vacío.";
+        }
+        if (!Validaciones_modelo.esTexto(marca_motor)) {
+            return "Marca de motor inválida: no puede estar vacía.";
+        }
+        return null;
+    }
+
     public String toString() {
-        return "Cilindraje: " + cilindraje + " tipo_motor: " + tipo_motor + "Marca_motor: " + marca_motor;
+        return "Cilindraje: " + cilindraje + " tipo_motor: " + tipo_motor + " Marca_motor: " + marca_motor;
     }
 
 }

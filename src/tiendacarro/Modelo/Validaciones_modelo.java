@@ -7,6 +7,7 @@ public class Validaciones_modelo {
     private static final String LETRAS = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+$";
     private static final String NUMEROS = "^[0-9]+$";
     private static final String CEDULA = "^[0-9]{6,10}$";
+    private static final String LICENCIA = "^[0-9]{6,10}$";
 
     public static boolean esTexto(String texto) {
         return texto != null && !texto.trim().isEmpty();
@@ -25,34 +26,59 @@ public class Validaciones_modelo {
     }
 
     public static boolean esLicenciaValida(String licencia) {
-        return esTexto(licencia) && licencia.trim().length() >= 3;
+        return esTexto(licencia) && licencia.trim().matches(LICENCIA);
+    }
+
+    public static String leerCedula(Scanner sc, String prompt) {
+        return leer(sc, prompt, CEDULA, "Debe tener entre 6 y 10 dígitos.");
+    }
+
+    public static String leerLicencia(Scanner sc, String prompt) {
+        return leer(sc, prompt, LICENCIA, "Debe tener entre 6 y 10 dígitos.");
     }
 
     public static boolean validarChofer(chofer_modelo chofer) {
-        return chofer != null
-                && esSoloLetras(chofer.getNombre_chofer())
-                && esCedulaValida(chofer.getCedula_chofer())
-                && esLicenciaValida(chofer.getLincencia_chofer());
+        return chofer != null && chofer.validar();
+    }
+
+    public static String validarChoferMensaje(chofer_modelo chofer) {
+        if (chofer == null) {
+            return "El chofer no puede ser nulo.";
+        }
+        return chofer.validarMensaje();
     }
 
     public static boolean validarCarro(carro_modelo carro) {
-        return carro != null
-                && esSoloLetras(carro.getMarca())
-                && esTexto(carro.getColor())
-                && esSoloNumeros(carro.getPuestos());
+        return carro != null && carro.validar();
+    }
+
+    public static String validarCarroMensaje(carro_modelo carro) {
+        if (carro == null) {
+            return "El carro no puede ser nulo.";
+        }
+        return carro.validarMensaje();
     }
 
     public static boolean validarMotor(motor_modelo motor) {
-        return motor != null
-                && motor.getCilindraje() > 0
-                && esTexto(motor.getTipo_motor())
-                && esTexto(motor.getMarca_motor());
+        return motor != null && motor.validar();
+    }
+
+    public static String validarMotorMensaje(motor_modelo motor) {
+        if (motor == null) {
+            return "El motor no puede ser nulo.";
+        }
+        return motor.validarMensaje();
     }
 
     public static boolean validarPasajero(Pasajero_modelo pasajero) {
-        return pasajero != null
-                && esSoloLetras(pasajero.getNombre())
-                && esCedulaValida(pasajero.getCedula());
+        return pasajero != null && pasajero.validar();
+    }
+
+    public static String validarPasajeroMensaje(Pasajero_modelo pasajero) {
+        if (pasajero == null) {
+            return "El pasajero no puede ser nulo.";
+        }
+        return pasajero.validarMensaje();
     }
 
     public static boolean validarApi(Api_modelo api) {

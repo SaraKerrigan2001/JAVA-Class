@@ -15,6 +15,11 @@ public class Vista_motor {
         return teclado.nextLine().trim();
     }
 
+    public String tomar_cilindraje() {
+        System.out.print("Ingresa el cilindraje del motor: ");
+        return teclado.nextLine().trim();
+    }
+
     public void registrar_motor() {
         System.out.println("Motor registrado: " + tomar_tipo_motor() + " | " + tomar_marca_motor());
     }

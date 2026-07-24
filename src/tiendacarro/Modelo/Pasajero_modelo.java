@@ -26,8 +26,22 @@ public class Pasajero_modelo {
         this.cedula = cedula;
     }
 
+    public boolean validar() {
+        return validarMensaje() == null;
+    }
+
+    public String validarMensaje() {
+        if (!Validaciones_modelo.esSoloLetras(nombre)) {
+            return "Nombre de pasajero inválido: solo se permiten letras.";
+        }
+        if (!Validaciones_modelo.esCedulaValida(cedula)) {
+            return "Cédula de pasajero inválida: debe tener entre 6 y 10 dígitos.";
+        }
+        return null;
+    }
+
     public String toString() {
-        return "nombre: " + nombre + "cedula: " + cedula ;
+        return "nombre: " + nombre + " cedula: " + cedula;
     }
 
 }

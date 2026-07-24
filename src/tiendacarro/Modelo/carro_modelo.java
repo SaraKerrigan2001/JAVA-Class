@@ -39,8 +39,28 @@ public class carro_modelo {
         this.puestos = puestos;
     }
 
+    public boolean validar() {
+        return validarMensaje() == null;
+    }
+
+    public String validarMensaje() {
+        if (!Validaciones_modelo.esSoloLetras(marca)) {
+            return "Marca inválida: solo se permiten letras.";
+        }
+        if (!Validaciones_modelo.esTexto(color)) {
+            return "Color inválido: no puede estar vacío.";
+        }
+        if (!Validaciones_modelo.esSoloNumeros(puestos)) {
+            return "Puestos inválidos: solo se permiten números.";
+        }
+        if (Integer.parseInt(puestos) <= 0) {
+            return "Puestos inválidos: debe ser mayor que cero.";
+        }
+        return null;
+    }
+
     public String toString() {
-        return "marca: " + marca + "color: " + color + "Puestos: " + puestos;
+        return "marca: " + marca + " color: " + color + " Puestos: " + puestos;
     }
 
 }
