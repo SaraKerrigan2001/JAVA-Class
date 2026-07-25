@@ -59,7 +59,7 @@ public class Vista_carro {
         return teclado.nextLine().trim();
     }
 
-    public void registrar_carro() {
-        System.out.println("Carro registrado: " + tomar_marca() + " | " + tomar_color() + " | " + tomar_num_puestos());
+    public void mostrarCarro(String marca, String color, String puestos) {
+        System.out.println("Carro registrado: " + marca + " | " + color + " | " + puestos);
     }
 }

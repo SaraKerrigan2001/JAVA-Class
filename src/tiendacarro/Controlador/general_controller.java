@@ -37,12 +37,7 @@ public class general_controller {
 
         chofer_modelo obj_chofer = new chofer_modelo(nombre, licencia, cedula);
         String errorChofer = obj_chofer.validarMensaje();
-
-        if (errorChofer == null) {
-            System.out.println("Chofer válido.");
-        } else {
-            System.out.println("Chofer inválido: " + errorChofer);
-        }
+        imprimirResultado("Chofer", errorChofer, () -> vistaChofer.mostrarChofer(nombre, licencia, cedula));
     }
 
     private void procesarCarro() {
@@ -50,37 +45,32 @@ public class general_controller {
         String color = vistaCarro.tomar_color();
         String puestos = vistaCarro.tomar_num_puestos();
 
+        String errorValidacion = validarEntero(puestos, "número de puestos");
+        if (errorValidacion != null) {
+            imprimirResultado("Carro", errorValidacion, () -> {});
+            return;
+        }
+
         carro_modelo obj_carro = new carro_modelo(marca, color, puestos);
         String errorCarro = obj_carro.validarMensaje();
-
-        if (errorCarro == null) {
-            System.out.println("Carro válido.");
-        } else {
-            System.out.println("Carro inválido: " + errorCarro);
-        }
+        imprimirResultado("Carro", errorCarro, () -> vistaCarro.mostrarCarro(marca, color, puestos));
     }
 
     private void procesarMotor() {
         String tipoMotor = vistaMotor.tomar_tipo_motor();
         String marcaMotor = vistaMotor.tomar_marca_motor();
-        int cilindraje = 0;
-        String cilindrajeTexto = vistaMotor.tomar_cilindraje();
+        String cilindrajeTexto = vistaMotor.tomar_cilindraje(tipoMotor);
 
-        try {
-            cilindraje = Integer.parseInt(cilindrajeTexto);
-        } catch (NumberFormatException e) {
-            System.out.println("Motor inválido: el cilindraje debe ser un número entero.");
+        String errorValidacion = validarEntero(cilindrajeTexto, "cilindraje");
+        if (errorValidacion != null) {
+            imprimirResultado("Motor", errorValidacion, () -> {});
             return;
         }
 
+        int cilindraje = Integer.parseInt(cilindrajeTexto);
         motor_modelo obj_motor = new motor_modelo(cilindraje, tipoMotor, marcaMotor);
         String errorMotor = obj_motor.validarMensaje();
-
-        if (errorMotor == null) {
-            System.out.println("Motor válido.");
-        } else {
-            System.out.println("Motor inválido: " + errorMotor);
-        }
+        imprimirResultado("Motor", errorMotor, () -> vistaMotor.mostrarMotor(cilindraje, tipoMotor, marcaMotor));
     }
 
     private void procesarPasajero() {
@@ -89,11 +79,22 @@ public class general_controller {
 
         Pasajero_modelo obj_pasajero = new Pasajero_modelo(nombre, cedula);
         String errorPasajero = obj_pasajero.validarMensaje();
+        imprimirResultado("Pasajero", errorPasajero, () -> vistaPasajero.mostrarPasajero(nombre, cedula));
+    }
 
-        if (errorPasajero == null) {
-            System.out.println("Pasajero válido.");
+    private void imprimirResultado(String tipo, String error, Runnable mostrarExito) {
+        if (error == null) {
+            System.out.println(tipo + " válido.");
+            mostrarExito.run();
         } else {
-            System.out.println("Pasajero inválido: " + errorPasajero);
+            System.out.println(tipo + " inválido: " + error);
         }
+    }
+
+    private String validarEntero(String texto, String campo) {
+        if (!Validaciones_modelo.esSoloNumeros(texto)) {
+            return "El " + campo + " debe ser un valor numérico.";
+        }
+        return null;
     }
 }
