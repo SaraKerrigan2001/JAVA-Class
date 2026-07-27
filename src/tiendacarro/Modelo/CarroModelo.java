@@ -1,19 +1,17 @@
 package tiendacarro.Modelo;
 
-public class carro_modelo {
+public class CarroModelo {
 
-    String marca = "";
-    String color = "";
-    String puestos = "";
-    
-    
-    public carro_modelo(String marca, String color, String num_puestos) {
+    private String marca = "";
+    private String color = "";
+    private String puestos = "";
+
+    public CarroModelo(String marca, String color, String numPuestos) {
         this.marca = marca;
         this.color = color;
-        this.puestos = num_puestos;
+        this.puestos = numPuestos;
     }
 
-    
     public String getMarca() {
         return marca;
     }
@@ -25,7 +23,6 @@ public class carro_modelo {
     public String getPuestos() {
         return puestos;
     }
-
 
     public void setMarca(String marca) {
         this.marca = marca;
@@ -44,13 +41,13 @@ public class carro_modelo {
     }
 
     public String validarMensaje() {
-        if (!Validaciones_modelo.esSoloLetras(marca)) {
+        if (!ValidacionesModelo.esSoloLetras(marca)) {
             return "Marca inválida: solo se permiten letras.";
         }
-        if (!Validaciones_modelo.esTexto(color)) {
+        if (!ValidacionesModelo.esTexto(color)) {
             return "Color inválido: no puede estar vacío.";
         }
-        if (!Validaciones_modelo.esSoloNumeros(puestos)) {
+        if (!ValidacionesModelo.esSoloNumeros(puestos)) {
             return "Puestos inválidos: solo se permiten números.";
         }
         if (Integer.parseInt(puestos) <= 0) {
@@ -60,7 +57,6 @@ public class carro_modelo {
     }
 
     public String toString() {
-        return "marca: " + marca + " color: " + color + " Puestos: " + puestos;
+        return "Marca: " + marca + " | Color: " + color + " | Puestos: " + puestos;
     }
-
 }

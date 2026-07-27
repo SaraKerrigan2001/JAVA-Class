@@ -1,13 +1,12 @@
 package tiendacarro.Modelo;
 
-public class Pasajero_modelo {
-    String nombre = "";
-    String cedula = "";
-    
-   public Pasajero_modelo(String nombre, String cedula) {
+public class PasajeroModelo {
+    private String nombre = "";
+    private String cedula = "";
+
+    public PasajeroModelo(String nombre, String cedula) {
         this.nombre = nombre;
         this.cedula = cedula;
-        
     }
 
     public String getNombre() {
@@ -31,18 +30,16 @@ public class Pasajero_modelo {
     }
 
     public String validarMensaje() {
-        if (!Validaciones_modelo.esSoloLetras(nombre)) {
+        if (!ValidacionesModelo.esSoloLetras(nombre)) {
             return "Nombre de pasajero inválido: solo se permiten letras.";
         }
-        if (!Validaciones_modelo.esCedulaValida(cedula)) {
+        if (!ValidacionesModelo.esCedulaValida(cedula)) {
             return "Cédula de pasajero inválida: debe tener entre 6 y 10 dígitos.";
         }
         return null;
     }
 
     public String toString() {
-        return "nombre: " + nombre + " cedula: " + cedula;
+        return "Nombre: " + nombre + " | Cédula: " + cedula;
     }
-
 }
-
