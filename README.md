@@ -6,11 +6,11 @@ Proyecto Java MVC simple para gestionar datos de choferes, carros, motores y pas
 
 1. Compilar:
    ```powershell
-   javac -d bin src\Main\TiendaCarro.java src\Controlador\general_controller.java src\Modelo\*.java src\Vista\*.java
+   javac -d bin src\tiendacarro\Main\TiendaParking.java src\tiendacarro\Controlador\controlador_general.java src\tiendacarro\Servicio\RegistroServicio.java src\tiendacarro\Modelo\*.java src\tiendacarro\Vista\*.java
    ```
 2. Ejecutar:
    ```powershell
-   java -cp bin tiendacarro.Main.TiendaCarro
+   java -cp bin tiendacarro.Main.TiendaParking
    ```
 
 ## Ignorar
